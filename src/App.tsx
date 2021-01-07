@@ -1,17 +1,20 @@
 import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
 import * as _ from "lodash";
 import createEngine, {
   DefaultLinkModel,
   DefaultNodeModel,
-  DiagramModel,
-  
+  DiagramModel,  
 } from "@projectstorm/react-diagrams";
 import * as SRD from "@projectstorm/react-diagrams";
 import "./styles.css";
 import { TrayWidget } from "./components/TrayWidget";
 import { TrayItemWidget } from "./components/TrayItemWidget";
+
+
+import { DiamondNodeModel } from "./components/custom-node/DiamondNodeModel";
+import { DiamondNodeFactory } from "./components/custom-node/DiamondNodeFactory";
+import { SimplePortFactory } from "./components/custom-node/SimplePortFactory";
+import { DiamondPortModel } from "./components/custom-node/DiamondPortModel";
 
 const ElmArchitecture = () => {
   // create an instance of the engine with all the defaults
@@ -49,6 +52,12 @@ export class Application {
   constructor() {
     this.diagramEngine = new SRD.DiagramEngine();
     this.diagramEngine.installDefaultFactories();
+
+    // register some other factories as well
+    this.diagramEngine.registerPortFactory(new SimplePortFactory("diamond", config => new DiamondPortModel()));
+    this.diagramEngine.registerNodeFactory(new DiamondNodeFactory());
+
+
     this.activeModel = new SRD.DiagramModel();
   }
 
@@ -85,6 +94,11 @@ export class BodyWidget extends React.Component<BodyWidgetProps> {
             name="Out Node"
             color="rgb(0,192,255)"
           />
+           <TrayItemWidget
+            model={{ type: "great" }}
+            name="Great Node"
+            color="#9f1d87"
+          />
         </TrayWidget>
         <div className = "Layer"
           onDrop=
@@ -96,14 +110,19 @@ export class BodyWidget extends React.Component<BodyWidgetProps> {
               this.props.app.getDiagramEngine().getDiagramModel().getNodes()
             ).length;
 
-            var node: DefaultNodeModel = new DefaultNodeModel();
+            var node: any = null;
             if (data.type === "in") {
               node = new DefaultNodeModel(
                 "Node " + (nodesCount + 1),
                 "rgb(192,255,0)"
               );
               node.addInPort("In");
-            } else {
+            }
+            if (data.type === "great") {
+              node = new DiamondNodeModel();
+            }
+            
+            else {
               node = new DefaultNodeModel(
                 "Node " + (nodesCount + 1),
                 "rgb(0,192,255)"
@@ -137,8 +156,10 @@ const App = () => {
 
   return (
     <div className="App">
-      <h2>FaultRelay</h2>
-      <BodyWidget app={app} />;
+      <div style = {{marginBottom : 20, fontSize : 30 }}>
+        FaultRelay
+      </div>
+      <BodyWidget app={app} />
     </div>
   );
 };
