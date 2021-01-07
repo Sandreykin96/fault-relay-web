@@ -6,6 +6,7 @@ import createEngine, {
   DefaultLinkModel,
   DefaultNodeModel,
   DiagramModel,
+  
 } from "@projectstorm/react-diagrams";
 import * as SRD from "@projectstorm/react-diagrams";
 import "./styles.css";
@@ -122,6 +123,7 @@ export class BodyWidget extends React.Component<BodyWidgetProps> {
           }}>
           <SRD.DiagramWidget
             className="srd-demo-canvas"
+            smartRouting={true}           
             diagramEngine={this.props.app.getDiagramEngine()}
           />
         </div>
