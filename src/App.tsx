@@ -137,8 +137,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1>FaultRelay</h1>
-      <h2>Расчеты уставок РЗА</h2>
+      <h2>FaultRelay</h2>
       <BodyWidget app={app} />;
     </div>
   );
