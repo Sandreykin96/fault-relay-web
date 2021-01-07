@@ -10,7 +10,6 @@ import "./styles.css";
 import { TrayWidget } from "./components/TrayWidget";
 import { TrayItemWidget } from "./components/TrayItemWidget";
 
-
 import { DiamondNodeModel } from "./components/custom-node/DiamondNodeModel";
 import { DiamondNodeFactory } from "./components/custom-node/DiamondNodeFactory";
 import { SimplePortFactory } from "./components/custom-node/SimplePortFactory";
