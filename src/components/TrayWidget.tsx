@@ -3,7 +3,7 @@ import "./../styles.css";
 
 export class TrayWidget extends React.Component {
 	render() {
-		return <div>{this.props.children}</div>;
+		return <div className="TrayWidget">{this.props.children}</div>;
 	}
 }
 

@@ -20,7 +20,9 @@ import { TransformerNodeFactory } from "./components/transformer-node/Transforme
 import { TransformerPortFactory } from "./components/transformer-node/TransformerPortFactory";
 import { TransformerPortModel } from "./components/transformer-node/TransformerPortModel";
 
-import {GeneratorIcon, TransformerIcon, ThreeTransformerIcon, Switch} from  "./components/icons/Icons"
+import {Connector, GeneratorIcon, TransformerIcon, 
+  ThreeTransformerIcon, Switch, Reactor, 
+  DoubleReactor,Divader, Line, Ground, Load} from  "./components/icons/Icons"
 
 const ElmArchitecture = () => {
   // create an instance of the engine with all the defaults
@@ -92,6 +94,7 @@ export class BodyWidget extends React.Component<BodyWidgetProps> {
   render() {
     return (
       <div className="Content">
+        <div style = {{marginLeft : 10, marginRight : 10, height: 680, overflowY:'scroll'}}>
         <TrayWidget>
           <TrayItemWidget
             model={{ type: "generator" }}
@@ -117,7 +120,53 @@ export class BodyWidget extends React.Component<BodyWidgetProps> {
             color="#9f1d87"
             icon = {Switch()}
           />
+          <TrayItemWidget
+            model={{ type: "reactor" }}
+            name="Реактор"
+            color="#9f1d87"
+            icon = {Reactor()}
+          />
+          <TrayItemWidget
+            model={{ type: "dobulereactor" }}
+            name="Сдвоенный реактор"
+            color="#9f1d87"
+            icon = {DoubleReactor()}
+          />
+          <TrayItemWidget
+            model={{ type: "dobulereactor" }}
+            name="Разъединитель"
+            color="#9f1d87"
+            icon = {Divader()}
+          />
+           <TrayItemWidget
+            model={{ type: "dobulereactor" }}
+            name="Линия"
+            color="#9f1d87"
+            icon = {Line()}
+          />
+          <TrayItemWidget
+            model={{ type: "dobulereactor" }}
+            name="Земля"
+            color="#9f1d87"
+            icon = {Ground()}
+          />
+
+          <TrayItemWidget
+            model={{ type: "dobulereactor" }}
+            name="Шина"
+            color="#9f1d87"
+            icon = {Connector()}
+          />
+
+          <TrayItemWidget
+            model={{ type: "dobulereactor" }}
+            name="Нагрузка"
+            color="#9f1d87"
+            icon = {Load()}
+          />
         </TrayWidget>
+        
+        </div>
         <div
           className="Layer"
           onDrop={(event: {

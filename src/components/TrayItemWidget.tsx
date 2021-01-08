@@ -21,8 +21,12 @@ export class TrayItemWidget extends React.Component<TrayItemWidgetProps> {
         }}
         className="TrayItemWidget"
       >
-        {this.props.name}
-        {this.props.icon}
+        <div>
+          {this.props.name}
+        </div>
+        <div>
+          {this.props.icon}
+        </div>
       </div>
     );
   }
