@@ -3,7 +3,7 @@ import * as _ from "lodash";
 import createEngine, {
   DefaultLinkModel,
   DefaultNodeModel,
-  DiagramModel,  
+  DiagramModel,
 } from "@projectstorm/react-diagrams";
 import * as SRD from "@projectstorm/react-diagrams";
 import "./styles.css";
@@ -55,8 +55,6 @@ export class Application {
     // register some other factories as well
     this.diagramEngine.registerPortFactory(new SimplePortFactory("diamond", config => new DiamondPortModel()));
     this.diagramEngine.registerNodeFactory(new DiamondNodeFactory());
-
-
     this.activeModel = new SRD.DiagramModel();
   }
 
@@ -70,6 +68,7 @@ export class Application {
   }
 
   public getDiagramEngine(): SRD.DiagramEngine {
+    
     return this.diagramEngine;
   }
 }
@@ -78,7 +77,7 @@ export interface BodyWidgetProps {
   app: Application;
 }
 
-export class BodyWidget extends React.Component<BodyWidgetProps> {
+export class BodyWidget extends React.Component<BodyWidgetProps> { 
   render() {
     return (
       <div className = "Content">
@@ -141,10 +140,14 @@ export class BodyWidget extends React.Component<BodyWidgetProps> {
           }}>
           <SRD.DiagramWidget
             className="srd-demo-canvas"
-            smartRouting={true}           
-            diagramEngine={this.props.app.getDiagramEngine()}
+            smartRouting={true}
+            diagramEngine={this.props.app.getDiagramEngine()
+
+            }
           />
         </div>
+      
+          
       </div>
     );
   }
