@@ -15,6 +15,11 @@ import { GeneratorNodeFactory } from "./components/generator-node/GeneratorNodeF
 import { GeneratorPortFactory } from "./components/generator-node/GeneratorPortFactory";
 import { GeneratorPortModel } from "./components/generator-node/GeneratorPortModel";
 
+import { TransformerNodeModel } from "./components/transformer-node/TransformerNodeModel";
+import { TransformerNodeFactory } from "./components/transformer-node/TransformerNodeFactory";
+import { TransformerPortFactory } from "./components/transformer-node/TransformerPortFactory";
+import { TransformerPortModel } from "./components/transformer-node/TransformerPortModel";
+
 const ElmArchitecture = () => {
   // create an instance of the engine with all the defaults
   var engine = new SRD.DiagramEngine();
@@ -53,8 +58,12 @@ export class Application {
     this.diagramEngine.installDefaultFactories();
 
     // register some other factories as well
-    this.diagramEngine.registerPortFactory(new GeneratorPortFactory("diamond", config => new GeneratorPortModel()));
+    this.diagramEngine.registerPortFactory(new GeneratorPortFactory("generator", config => new GeneratorPortModel()));
     this.diagramEngine.registerNodeFactory(new GeneratorNodeFactory());
+    this.diagramEngine.registerPortFactory(new TransformerPortFactory("transformer", config => new TransformerPortModel()));
+    this.diagramEngine.registerNodeFactory(new TransformerNodeFactory());
+
+
     this.activeModel = new SRD.DiagramModel();
   }
 
@@ -80,7 +89,7 @@ export interface BodyWidgetProps {
 export class BodyWidget extends React.Component<BodyWidgetProps> { 
   render() {
     return (
-      <div className = "Content">
+      <div className="Content">
         <TrayWidget>
           <TrayItemWidget
             model={{ type: "in" }}
@@ -92,15 +101,22 @@ export class BodyWidget extends React.Component<BodyWidgetProps> {
             name="Out Node"
             color="rgb(0,192,255)"
           />
-           <TrayItemWidget
+          <TrayItemWidget
             model={{ type: "generator" }}
             name="Генератор"
             color="#9f1d87"
           />
+          <TrayItemWidget
+            model={{ type: "transformer" }}
+            name="Трансформатор"
+            color="#9f1d87"
+          />
         </TrayWidget>
-        <div className = "Layer"
-          onDrop=
-          {(event: { dataTransfer: { getData: (arg0: string) => string } }) => {
+        <div
+          className="Layer"
+          onDrop={(event: {
+            dataTransfer: { getData: (arg0: string) => string };
+          }) => {
             var data = JSON.parse(
               event.dataTransfer.getData("storm-diagram-node")
             );
@@ -108,19 +124,23 @@ export class BodyWidget extends React.Component<BodyWidgetProps> {
               this.props.app.getDiagramEngine().getDiagramModel().getNodes()
             ).length;
 
+            console.log("Data type = " + data.type)
+
             var node: any = null;
-            if (data.type === "in") {
+            if (data.type == "in") {
               node = new DefaultNodeModel(
                 "Node " + (nodesCount + 1),
                 "rgb(192,255,0)"
               );
               node.addInPort("In");
             }
-            if (data.type === "generator") {
+            if (data.type == "generator") {
               node = new GeneratorNodeModel();
-            }
+            } if (data.type == "transformer") {
+              node = new TransformerNodeModel();
+            } 
             
-            else {
+            if(data.type =="out") {
               node = new DefaultNodeModel(
                 "Node " + (nodesCount + 1),
                 "rgb(0,192,255)"
@@ -134,20 +154,16 @@ export class BodyWidget extends React.Component<BodyWidgetProps> {
             this.props.app.getDiagramEngine().getDiagramModel().addNode(node);
             this.forceUpdate();
           }}
-          onDragOver=
-          {(event: { preventDefault: () => void }) => {
+          onDragOver={(event: { preventDefault: () => void }) => {
             event.preventDefault();
-          }}>
+          }}
+        >
           <SRD.DiagramWidget
             className="srd-demo-canvas"
             smartRouting={true}
-            diagramEngine={this.props.app.getDiagramEngine()
-
-            }
+            diagramEngine={this.props.app.getDiagramEngine()}
           />
         </div>
-      
-          
       </div>
     );
   }
