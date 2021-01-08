@@ -10,10 +10,10 @@ import "./styles.css";
 import { TrayWidget } from "./components/TrayWidget";
 import { TrayItemWidget } from "./components/TrayItemWidget";
 
-import { DiamondNodeModel } from "./components/custom-node/DiamondNodeModel";
-import { DiamondNodeFactory } from "./components/custom-node/DiamondNodeFactory";
-import { SimplePortFactory } from "./components/custom-node/SimplePortFactory";
-import { DiamondPortModel } from "./components/custom-node/DiamondPortModel";
+import { GeneratorNodeModel } from "./components/generator-node/GeneratorNodeModel";
+import { GeneratorNodeFactory } from "./components/generator-node/GeneratorNodeFactory";
+import { GeneratorPortFactory } from "./components/generator-node/GeneratorPortFactory";
+import { GeneratorPortModel } from "./components/generator-node/GeneratorPortModel";
 
 const ElmArchitecture = () => {
   // create an instance of the engine with all the defaults
@@ -53,8 +53,8 @@ export class Application {
     this.diagramEngine.installDefaultFactories();
 
     // register some other factories as well
-    this.diagramEngine.registerPortFactory(new SimplePortFactory("diamond", config => new DiamondPortModel()));
-    this.diagramEngine.registerNodeFactory(new DiamondNodeFactory());
+    this.diagramEngine.registerPortFactory(new GeneratorPortFactory("diamond", config => new GeneratorPortModel()));
+    this.diagramEngine.registerNodeFactory(new GeneratorNodeFactory());
     this.activeModel = new SRD.DiagramModel();
   }
 
@@ -93,8 +93,8 @@ export class BodyWidget extends React.Component<BodyWidgetProps> {
             color="rgb(0,192,255)"
           />
            <TrayItemWidget
-            model={{ type: "great" }}
-            name="Great Node"
+            model={{ type: "generator" }}
+            name="Генератор"
             color="#9f1d87"
           />
         </TrayWidget>
@@ -116,8 +116,8 @@ export class BodyWidget extends React.Component<BodyWidgetProps> {
               );
               node.addInPort("In");
             }
-            if (data.type === "great") {
-              node = new DiamondNodeModel();
+            if (data.type === "generator") {
+              node = new GeneratorNodeModel();
             }
             
             else {

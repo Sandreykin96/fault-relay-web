@@ -1,24 +1,24 @@
 import * as React from "react";
-import { DiamondNodeModel } from "./DiamondNodeModel";
+import { GeneratorNodeModel } from "./GeneratorNodeModel";
 import { PortWidget } from "@projectstorm/react-diagrams";
 
-export interface DiamonNodeWidgetProps {
-	node: DiamondNodeModel;
+export interface GeneratorNodeWidgetProps {
+	node: GeneratorNodeModel;
 	size?: number;
 }
 
-export interface DiamonNodeWidgetState {}
+export interface GeneratorNodeWidgetState {}
 
 /**
  * @author Dylan Vorster
  */
-export class DiamonNodeWidget extends React.Component<DiamonNodeWidgetProps, DiamonNodeWidgetState> {
-	public static defaultProps: DiamonNodeWidgetProps = {
+export class GeneratorNodeWidget extends React.Component<GeneratorNodeWidgetProps, GeneratorNodeWidgetState> {
+	public static defaultProps: GeneratorNodeWidgetProps = {
 		size: 150,
-		node: new DiamondNodeModel
+		node: new GeneratorNodeModel
 	};
 
-	constructor(props: DiamonNodeWidgetProps) {
+	constructor(props: GeneratorNodeWidgetProps) {
 		super(props);
 		this.state = {};
 	}
