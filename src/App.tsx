@@ -20,6 +20,8 @@ import { TransformerNodeFactory } from "./components/transformer-node/Transforme
 import { TransformerPortFactory } from "./components/transformer-node/TransformerPortFactory";
 import { TransformerPortModel } from "./components/transformer-node/TransformerPortModel";
 
+import {GeneratorIcon, TransformerIcon, ThreeTransformerIcon, Switch} from  "./components/icons/Icons"
+
 const ElmArchitecture = () => {
   // create an instance of the engine with all the defaults
   var engine = new SRD.DiagramEngine();
@@ -86,30 +88,34 @@ export interface BodyWidgetProps {
   app: Application;
 }
 
-export class BodyWidget extends React.Component<BodyWidgetProps> { 
+export class BodyWidget extends React.Component<BodyWidgetProps> {
   render() {
     return (
       <div className="Content">
         <TrayWidget>
           <TrayItemWidget
-            model={{ type: "in" }}
-            name="In Node"
-            color="rgb(192,255,0)"
-          />
-          <TrayItemWidget
-            model={{ type: "out" }}
-            name="Out Node"
-            color="rgb(0,192,255)"
-          />
-          <TrayItemWidget
             model={{ type: "generator" }}
             name="Генератор"
             color="#9f1d87"
+            icon = {GeneratorIcon()}
           />
           <TrayItemWidget
             model={{ type: "transformer" }}
-            name="Трансформатор"
+            name="Двухобмоточный трансформатор"
             color="#9f1d87"
+            icon = {TransformerIcon()}
+          />
+           <TrayItemWidget
+            model={{ type: "transformer3" }}
+            name="Трехобмоточный трансформатор"
+            color="#9f1d87"
+            icon = {ThreeTransformerIcon()}
+          />
+           <TrayItemWidget
+            model={{ type: "switch" }}
+            name="Выключатель"
+            color="#9f1d87"
+            icon = {Switch()}
           />
         </TrayWidget>
         <div
