@@ -25,6 +25,11 @@ import { TransformerNodeFactory3 } from "./components/transformer-node 3/Transfo
 import { TransformerPortFactory3 } from "./components/transformer-node 3/TransformerPortFactory3";
 import { TransformerPortModel3 } from "./components/transformer-node 3/TransformerPortModel3";
 
+import { SwitchNodeModel } from "./components/switch-node/SwitchNodeModel";
+import { SwitchNodeFactory } from "./components/switch-node/SwitchNodeFactory";
+import { SwitchPortFactory } from "./components/switch-node/SwitchPortFactory";
+import { SwitchPortModel } from "./components/switch-node/SwitchPortModel";
+
 import { ReactorNodeModel } from "./components/reactor-node/ReactorNodeModel";
 import { ReactorNodeFactory } from "./components/reactor-node/ReactorNodeFactory";
 import { ReactorPortFactory } from "./components/reactor-node/ReactorPortFactory";
@@ -56,6 +61,9 @@ export class Application {
 
     this.diagramEngine.registerPortFactory(new TransformerPortFactory3("transformer3", config => new TransformerPortModel3()));
     this.diagramEngine.registerNodeFactory(new TransformerNodeFactory3());
+
+    this.diagramEngine.registerPortFactory(new SwitchPortFactory("switch", config => new SwitchPortModel()));
+    this.diagramEngine.registerNodeFactory(new SwitchNodeFactory());
 
     this.diagramEngine.registerPortFactory(new ReactorPortFactory("reactor", config => new ReactorPortModel()));
     this.diagramEngine.registerNodeFactory(new ReactorNodeFactory());
@@ -186,6 +194,9 @@ export class BodyWidget extends React.Component<BodyWidgetProps> {
             if (data.type == "transformer3") {
               node = new TransformerNodeModel3();
             }  
+            if (data.type == "switch") {
+              node = new SwitchNodeModel();
+            }
             if (data.type == "reactor") {
               node = new ReactorNodeModel();
             }
