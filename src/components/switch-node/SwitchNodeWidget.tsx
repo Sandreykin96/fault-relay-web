@@ -61,6 +61,28 @@ export class SwitchNodeWidget extends React.Component<SwitchNodeWidgetProps, Swi
         >
           <PortWidget name="bottom" node={this.props.node} />
         </div>
+        <div
+          style={{
+            position: "absolute",
+            zIndex: 10,
+            left: 50 / 2 -36,
+            top: 15,
+          }}
+        >
+          <PortWidget name="bottom-left" node={this.props.node} />
+        </div>
+
+        <div
+          style={{
+            position: "absolute",
+            zIndex: 10,
+            left: 50 / 2 +12,
+            top: 15,
+          }}
+        >
+          <PortWidget name="bottom-right" node={this.props.node} />
+        </div>
+        
       </div>
     );
 	}

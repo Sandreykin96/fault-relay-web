@@ -128,7 +128,7 @@ export const DoubleReactor = () => {
   );
 };
 
-export const Divader = () => {
+export const Divider = () => {
   return (
     <svg
       width="52"

@@ -34,6 +34,21 @@ import { ReactorNodeModel } from "./components/reactor-node/ReactorNodeModel";
 import { ReactorNodeFactory } from "./components/reactor-node/ReactorNodeFactory";
 import { ReactorPortFactory } from "./components/reactor-node/ReactorPortFactory";
 import { ReactorPortModel } from "./components/reactor-node/ReactorPortModel";
+
+import { DoubleReactorNodeModel } from "./components/doublereactor-node/DoubleReactorNodeModel";
+import { DoubleReactorNodeFactory } from "./components/doublereactor-node/DoubleReactorNodeFactory";
+import { DoubleReactorPortFactory } from "./components/doublereactor-node/DoubleReactorPortFactory";
+import { DoubleReactorPortModel } from "./components/doublereactor-node/DoubleReactorPortModel";
+
+import { DividerNodeModel } from "./components/divider-node/DividerNodeModel";
+import { DividerNodeFactory } from "./components/divider-node/DividerNodeFactory";
+import { DividerPortFactory } from "./components/divider-node/DividerPortFactory";
+import { DividerPortModel } from "./components/divider-node/DividerPortModel";
+
+import { LineNodeModel } from "./components/line-node/LineNodeModel";
+import { LineNodeFactory } from "./components/line-node/LineNodeFactory";
+import { LinePortFactory } from "./components/line-node/LinePortFactory";
+import { LinePortModel } from "./components/line-node/LinePortModel";
 //Изменения в app.tsx которые нужно сделать указаны в комментраниях на русском. 
 //Нужно для каждого из этих элементов сделать наподобие transformer=node или generator-node
 //Пока что нужно в папке трансформер ноде 3 измененить все файлы. по факту тебе будет нужно переименовать все файлы а также отредактировать 
@@ -42,7 +57,7 @@ import { ReactorPortModel } from "./components/reactor-node/ReactorPortModel";
 
 import {Connector, GeneratorIcon, TransformerIcon, 
   ThreeTransformerIcon, Switch, Reactor, 
-  DoubleReactor,Divader, Line, Ground, Load} from  "./components/icons/Icons"
+  DoubleReactor, Divider, Line, Ground, Load} from  "./components/icons/Icons"
 
 export class Application {
   protected activeModel: SRD.DiagramModel;
@@ -67,6 +82,15 @@ export class Application {
 
     this.diagramEngine.registerPortFactory(new ReactorPortFactory("reactor", config => new ReactorPortModel()));
     this.diagramEngine.registerNodeFactory(new ReactorNodeFactory());
+
+    this.diagramEngine.registerPortFactory(new DoubleReactorPortFactory("doublereactor", config => new DoubleReactorPortModel()));
+    this.diagramEngine.registerNodeFactory(new DoubleReactorNodeFactory());
+
+    this.diagramEngine.registerPortFactory(new DividerPortFactory("reactor", config => new DividerPortModel()));
+    this.diagramEngine.registerNodeFactory(new DividerNodeFactory());
+
+    this.diagramEngine.registerPortFactory(new LinePortFactory("reactor", config => new LinePortModel()));
+    this.diagramEngine.registerNodeFactory(new LineNodeFactory());
     //Тут добавить по образу и подобию  PortFactory и NodeFactory
 
 
@@ -129,39 +153,39 @@ export class BodyWidget extends React.Component<BodyWidgetProps> {
             icon = {Reactor()}
           />
           <TrayItemWidget
-            model={{ type: "dobulereactor" }}
+            model={{ type: "doublereactor" }}
             name="Сдвоенный реактор"
             color="#9f1d87"
             icon = {DoubleReactor()}
           />
           <TrayItemWidget
-            model={{ type: "dobulereactor" }}
+            model={{ type: "divider" }}
             name="Разъединитель"
             color="#9f1d87"
-            icon = {Divader()}
+            icon = {Divider()}
           />
            <TrayItemWidget
-            model={{ type: "dobulereactor" }}
+            model={{ type: "line" }}
             name="Линия"
             color="#9f1d87"
             icon = {Line()}
           />
           <TrayItemWidget
-            model={{ type: "dobulereactor" }}
+            model={{ type: "ground" }}
             name="Земля"
             color="#9f1d87"
             icon = {Ground()}
           />
 
           <TrayItemWidget
-            model={{ type: "dobulereactor" }}
+            model={{ type: "connector" }}
             name="Шина"
             color="#9f1d87"
             icon = {Connector()}
           />
 
           <TrayItemWidget
-            model={{ type: "dobulereactor" }}
+            model={{ type: "load" }}
             name="Нагрузка"
             color="#9f1d87"
             icon = {Load()}
@@ -199,6 +223,15 @@ export class BodyWidget extends React.Component<BodyWidgetProps> {
             }
             if (data.type == "reactor") {
               node = new ReactorNodeModel();
+            }
+            if (data.type == "doublereactor") {
+              node = new DoubleReactorNodeModel();
+            }
+            if (data.type == "divider") {
+              node = new DividerNodeModel();
+            }
+            if (data.type == "line") {
+              node = new LineNodeModel();
             }
             //Тут добавить условия, типа if(data.type=="reactor"{node = new ReactorNodeModel()})
            //Тем самым сработает DrugAndDrop. Больше в этом компоненте ничего не трогать
