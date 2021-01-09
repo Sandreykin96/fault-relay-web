@@ -20,6 +20,15 @@ import { TransformerNodeFactory } from "./components/transformer-node/Transforme
 import { TransformerPortFactory } from "./components/transformer-node/TransformerPortFactory";
 import { TransformerPortModel } from "./components/transformer-node/TransformerPortModel";
 
+//добавил для трансформатора 3
+import { TransformerNodeModel3 } from "./components/transformer-node 3/TransformerNodeModel3";
+import { TransformerNodeFactory3 } from "./components/transformer-node 3/TransformerNodeFactory3";
+import { TransformerPortFactory3 } from "./components/transformer-node 3/TransformerPortFactory3";
+import { TransformerPortModel3 } from "./components/transformer-node 3/TransformerPortModel3";
+
+//Изменения в app.tsx которые нужно сделать указаны в комментраниях на русском. 
+//Нужно для каждого из этих элементов сделать наподобие transformer=node или generator-node
+//Пока что нужно в папке трансформер ноде 3 измененить все файлы. по факту тебе будет нужно переименовать все файлы а также отредактировать 
 //Точно так же импортировать 4 штуки: ТNodeModel, NodeFactory, PortFacrory, PortModel Для каждого элемента
 
 
@@ -40,6 +49,9 @@ export class Application {
     this.diagramEngine.registerNodeFactory(new GeneratorNodeFactory());
     this.diagramEngine.registerPortFactory(new TransformerPortFactory("transformer", config => new TransformerPortModel()));
     this.diagramEngine.registerNodeFactory(new TransformerNodeFactory());
+
+    this.diagramEngine.registerPortFactory(new TransformerPortFactory3("transformer3", config => new TransformerPortModel3()));
+    this.diagramEngine.registerNodeFactory(new TransformerNodeFactory3());
     //Тут добавить по образу и подобию  PortFactory и NodeFactory
 
 
@@ -162,7 +174,10 @@ export class BodyWidget extends React.Component<BodyWidgetProps> {
               node = new GeneratorNodeModel();
             } if (data.type == "transformer") {
               node = new TransformerNodeModel();
-            } 
+            }if (data.type == "transformer3") {
+              node = new TransformerNodeModel3();
+            }  
+
             //Тут добавить условия, типа if(data.type=="reactor"{node = new ReactorNodeModel()})
            //Тем самым сработает DrugAndDrop. Больше в этом компоненте ничего не трогать
 
