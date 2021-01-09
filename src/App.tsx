@@ -20,12 +20,15 @@ import { TransformerNodeFactory } from "./components/transformer-node/Transforme
 import { TransformerPortFactory } from "./components/transformer-node/TransformerPortFactory";
 import { TransformerPortModel } from "./components/transformer-node/TransformerPortModel";
 
-//добавил для трансформатора 3
 import { TransformerNodeModel3 } from "./components/transformer-node 3/TransformerNodeModel3";
 import { TransformerNodeFactory3 } from "./components/transformer-node 3/TransformerNodeFactory3";
 import { TransformerPortFactory3 } from "./components/transformer-node 3/TransformerPortFactory3";
 import { TransformerPortModel3 } from "./components/transformer-node 3/TransformerPortModel3";
 
+import { ReactorNodeModel } from "./components/reactor-node/ReactorNodeModel";
+import { ReactorNodeFactory } from "./components/reactor-node/ReactorNodeFactory";
+import { ReactorPortFactory } from "./components/reactor-node/ReactorPortFactory";
+import { ReactorPortModel } from "./components/reactor-node/ReactorPortModel";
 //Изменения в app.tsx которые нужно сделать указаны в комментраниях на русском. 
 //Нужно для каждого из этих элементов сделать наподобие transformer=node или generator-node
 //Пока что нужно в папке трансформер ноде 3 измененить все файлы. по факту тебе будет нужно переименовать все файлы а также отредактировать 
@@ -47,11 +50,15 @@ export class Application {
     // register some other factories as well
     this.diagramEngine.registerPortFactory(new GeneratorPortFactory("generator", config => new GeneratorPortModel()));
     this.diagramEngine.registerNodeFactory(new GeneratorNodeFactory());
+
     this.diagramEngine.registerPortFactory(new TransformerPortFactory("transformer", config => new TransformerPortModel()));
     this.diagramEngine.registerNodeFactory(new TransformerNodeFactory());
 
     this.diagramEngine.registerPortFactory(new TransformerPortFactory3("transformer3", config => new TransformerPortModel3()));
     this.diagramEngine.registerNodeFactory(new TransformerNodeFactory3());
+
+    this.diagramEngine.registerPortFactory(new ReactorPortFactory("reactor", config => new ReactorPortModel()));
+    this.diagramEngine.registerNodeFactory(new ReactorNodeFactory());
     //Тут добавить по образу и подобию  PortFactory и NodeFactory
 
 
@@ -172,22 +179,26 @@ export class BodyWidget extends React.Component<BodyWidgetProps> {
            
             if (data.type == "generator") {
               node = new GeneratorNodeModel();
-            } if (data.type == "transformer") {
+            } 
+            if (data.type == "transformer") {
               node = new TransformerNodeModel();
-            }if (data.type == "transformer3") {
+            }
+            if (data.type == "transformer3") {
               node = new TransformerNodeModel3();
             }  
-
+            if (data.type == "reactor") {
+              node = new ReactorNodeModel();
+            }
             //Тут добавить условия, типа if(data.type=="reactor"{node = new ReactorNodeModel()})
            //Тем самым сработает DrugAndDrop. Больше в этом компоненте ничего не трогать
 
 
-            var point = this.props.app
-              .getDiagramEngine()
-              .getRelativeMousePoint(event);
-            node.setPosition(point.x, point.y);
-            this.props.app.getDiagramEngine().getDiagramModel().addNode(node);
-            this.forceUpdate();
+           var point = this.props.app
+           .getDiagramEngine()
+           .getRelativeMousePoint(event);
+         node.setPosition(point.x, point.y);
+         this.props.app.getDiagramEngine().getDiagramModel().addNode(node);
+         this.forceUpdate()
           }}
           onDragOver={(event: { preventDefault: () => void }) => {
             event.preventDefault();
