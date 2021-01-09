@@ -20,38 +20,12 @@ import { TransformerNodeFactory } from "./components/transformer-node/Transforme
 import { TransformerPortFactory } from "./components/transformer-node/TransformerPortFactory";
 import { TransformerPortModel } from "./components/transformer-node/TransformerPortModel";
 
+//Точно так же импортировать 4 штуки: ТNodeModel, NodeFactory, PortFacrory, PortModel Для каждого элемента
+
+
 import {Connector, GeneratorIcon, TransformerIcon, 
   ThreeTransformerIcon, Switch, Reactor, 
   DoubleReactor,Divader, Line, Ground, Load} from  "./components/icons/Icons"
-
-const ElmArchitecture = () => {
-  // create an instance of the engine with all the defaults
-  var engine = new SRD.DiagramEngine();
-
-  engine.installDefaultFactories();
-  // create a default node
-  var node1 = new DefaultNodeModel("Model", "rgb(0,192,255)");
-  let port1 = node1.addOutPort(" ");
-  node1.setPosition(100, 100);
-
-  //3-B) create another default node
-  var node2 = new DefaultNodeModel("view", "rgb(192,255,0)");
-  let port2 = node2.addInPort("Model");
-  let port3 = node2.addOutPort("Html");
-  node2.setPosition(400, 100);
-
-  // link the ports
-  let link1 = port1.link(port2);
-
-  const model = new DiagramModel();
-  model.addAll(node1, node2, link1);
-
-  engine.setDiagramModel(model);
-
-  return (
-    <SRD.DiagramWidget className="srd-demo-canvas" diagramEngine={engine} />
-  );
-};
 
 export class Application {
   protected activeModel: SRD.DiagramModel;
@@ -66,6 +40,7 @@ export class Application {
     this.diagramEngine.registerNodeFactory(new GeneratorNodeFactory());
     this.diagramEngine.registerPortFactory(new TransformerPortFactory("transformer", config => new TransformerPortModel()));
     this.diagramEngine.registerNodeFactory(new TransformerNodeFactory());
+    //Тут добавить по образу и подобию  PortFactory и NodeFactory
 
 
     this.activeModel = new SRD.DiagramModel();
@@ -182,26 +157,16 @@ export class BodyWidget extends React.Component<BodyWidgetProps> {
             console.log("Data type = " + data.type)
 
             var node: any = null;
-            if (data.type == "in") {
-              node = new DefaultNodeModel(
-                "Node " + (nodesCount + 1),
-                "rgb(192,255,0)"
-              );
-              node.addInPort("In");
-            }
+           
             if (data.type == "generator") {
               node = new GeneratorNodeModel();
             } if (data.type == "transformer") {
               node = new TransformerNodeModel();
             } 
-            
-            if(data.type =="out") {
-              node = new DefaultNodeModel(
-                "Node " + (nodesCount + 1),
-                "rgb(0,192,255)"
-              );
-              node.addOutPort("Out");
-            }
+            //Тут добавить условия, типа if(data.type=="reactor"{node = new ReactorNodeModel()})
+           //Тем самым сработает DrugAndDrop. Больше в этом компоненте ничего не трогать
+
+
             var point = this.props.app
               .getDiagramEngine()
               .getRelativeMousePoint(event);
