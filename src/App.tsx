@@ -49,6 +49,21 @@ import { LineNodeModel } from "./components/line-node/LineNodeModel";
 import { LineNodeFactory } from "./components/line-node/LineNodeFactory";
 import { LinePortFactory } from "./components/line-node/LinePortFactory";
 import { LinePortModel } from "./components/line-node/LinePortModel";
+
+import { GroundNodeModel } from "./components/ground-node/GroundNodeModel";
+import { GroundNodeFactory } from "./components/ground-node/GroundNodeFactory";
+import { GroundPortFactory } from "./components/ground-node/GroundPortFactory";
+import { GroundPortModel } from "./components/ground-node/GroundPortModel";
+
+import { ConnectorNodeModel } from "./components/connector-node/ConnectorNodeModel";
+import { ConnectorNodeFactory } from "./components/connector-node/ConnectorNodeFactory";
+import { ConnectorPortFactory } from "./components/connector-node/ConnectorPortFactory";
+import { ConnectorPortModel } from "./components/connector-node/ConnectorPortModel";
+
+import { LoadNodeModel } from "./components/load-node/LoadNodeModel";
+import { LoadNodeFactory } from "./components/load-node/LoadNodeFactory";
+import { LoadPortFactory } from "./components/load-node/LoadPortFactory";
+import { LoadPortModel } from "./components/load-node/LoadPortModel";
 //Изменения в app.tsx которые нужно сделать указаны в комментраниях на русском. 
 //Нужно для каждого из этих элементов сделать наподобие transformer=node или generator-node
 //Пока что нужно в папке трансформер ноде 3 измененить все файлы. по факту тебе будет нужно переименовать все файлы а также отредактировать 
@@ -86,11 +101,20 @@ export class Application {
     this.diagramEngine.registerPortFactory(new DoubleReactorPortFactory("doublereactor", config => new DoubleReactorPortModel()));
     this.diagramEngine.registerNodeFactory(new DoubleReactorNodeFactory());
 
-    this.diagramEngine.registerPortFactory(new DividerPortFactory("reactor", config => new DividerPortModel()));
+    this.diagramEngine.registerPortFactory(new DividerPortFactory("divider", config => new DividerPortModel()));
     this.diagramEngine.registerNodeFactory(new DividerNodeFactory());
 
-    this.diagramEngine.registerPortFactory(new LinePortFactory("reactor", config => new LinePortModel()));
+    this.diagramEngine.registerPortFactory(new LinePortFactory("line", config => new LinePortModel()));
     this.diagramEngine.registerNodeFactory(new LineNodeFactory());
+
+    this.diagramEngine.registerPortFactory(new GroundPortFactory("ground", config => new GroundPortModel()));
+    this.diagramEngine.registerNodeFactory(new GroundNodeFactory());
+    
+    this.diagramEngine.registerPortFactory(new ConnectorPortFactory("connector", config => new ConnectorPortModel()));
+    this.diagramEngine.registerNodeFactory(new ConnectorNodeFactory());
+
+    this.diagramEngine.registerPortFactory(new LoadPortFactory("load", config => new LoadPortModel()));
+    this.diagramEngine.registerNodeFactory(new LoadNodeFactory());
     //Тут добавить по образу и подобию  PortFactory и NodeFactory
 
 
@@ -232,6 +256,15 @@ export class BodyWidget extends React.Component<BodyWidgetProps> {
             }
             if (data.type == "line") {
               node = new LineNodeModel();
+            }
+            if (data.type == "ground") {
+              node = new GroundNodeModel();
+            }
+            if (data.type == "connector") {
+              node = new ConnectorNodeModel();
+            }
+            if (data.type == "load") {
+              node = new LoadNodeModel();
             }
             //Тут добавить условия, типа if(data.type=="reactor"{node = new ReactorNodeModel()})
            //Тем самым сработает DrugAndDrop. Больше в этом компоненте ничего не трогать

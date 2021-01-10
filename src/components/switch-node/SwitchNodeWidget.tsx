@@ -1,6 +1,7 @@
 import * as React from "react";
 import { SwitchNodeModel } from "./SwitchNodeModel";
 import { PortWidget } from "@projectstorm/react-diagrams";
+import { Switch } from "../icons/Icons";
 
 export interface SwitchNodeWidgetProps {
 	node: SwitchNodeModel;
@@ -23,23 +24,7 @@ export class SwitchNodeWidget extends React.Component<SwitchNodeWidgetProps, Swi
 	render() {
 		return (
       <div>
-       <svg
-      width="40"
-      height="40"
-      viewBox="0 0 40 40"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <rect
-        x="1.5"
-        y="1.5"
-        width="37"
-        height="37"
-        stroke="#55D162"
-        stroke-width="3"
-      />
-    </svg>
-
+       {Switch()}
         
         <div
           style={{

@@ -1,22 +1,22 @@
 import * as React from "react";
-import { DividerNodeModel } from "./DividerNodeModel";
+import { ConnectorNodeModel } from "./ConnectorNodeModel";
 import { PortWidget } from "@projectstorm/react-diagrams";
-import { Divider } from "../icons/Icons";
+import { Connector } from "../icons/Icons";
 
-export interface DividerNodeWidgetProps {
-	node: DividerNodeModel;
+export interface ConnectorNodeWidgetProps {
+	node: ConnectorNodeModel;
 	size?: number;
 }
 
-export interface DividerNodeWidgetState {}
+export interface ConnectorNodeWidgetState {}
 
-export class DividerNodeWidget extends React.Component<DividerNodeWidgetProps, DividerNodeWidgetState> {
-	public static defaultProps: DividerNodeWidgetProps = {
+export class ConnectorNodeWidget extends React.Component<ConnectorNodeWidgetProps, ConnectorNodeWidgetState> {
+	public static defaultProps: ConnectorNodeWidgetProps = {
 		size: 150,
-		node: new DividerNodeModel
+		node: new ConnectorNodeModel
 	};
 
-	constructor(props: DividerNodeWidgetProps) {
+	constructor(props: ConnectorNodeWidgetProps) {
 		super(props);
 		this.state = {};
 	}
@@ -24,14 +24,14 @@ export class DividerNodeWidget extends React.Component<DividerNodeWidgetProps, D
 	render() {
 		return (
       <div>
-      {Divider()}
-
-        <div
+      {Connector()}
+        
+      <div
           style={{
             position: "absolute",
             zIndex: 10,
             left: 50 / 2 -36,
-            top: 9,
+            top: 6,
           }}
         >
           <PortWidget name="bottom-left" node={this.props.node} />
@@ -41,8 +41,8 @@ export class DividerNodeWidget extends React.Component<DividerNodeWidgetProps, D
           style={{
             position: "absolute",
             zIndex: 10,
-            left: 50 / 2 +24,
-            top: 9,
+            left: 50 / 2 +93,
+            top: 6,
           }}
         >
           <PortWidget name="bottom-right" node={this.props.node} />

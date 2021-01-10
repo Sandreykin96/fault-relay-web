@@ -1,22 +1,22 @@
 import * as React from "react";
-import { LineNodeModel } from "./LineNodeModel";
+import { LoadNodeModel } from "./LoadNodeModel";
 import { PortWidget } from "@projectstorm/react-diagrams";
-import { Line } from "../icons/Icons";
+import { Load } from "../icons/Icons";
 
-export interface LineNodeWidgetProps {
-	node: LineNodeModel;
+export interface LoadNodeWidgetProps {
+	node: LoadNodeModel;
 	size?: number;
 }
 
-export interface LineNodeWidgetState {}
+export interface LoadNodeWidgetState {}
 
-export class LineNodeWidget extends React.Component<LineNodeWidgetProps, LineNodeWidgetState> {
-	public static defaultProps: LineNodeWidgetProps = {
+export class LoadNodeWidget extends React.Component<LoadNodeWidgetProps, LoadNodeWidgetState> {
+	public static defaultProps: LoadNodeWidgetProps = {
 		size: 150,
-		node: new LineNodeModel
+		node: new LoadNodeModel
 	};
 
-	constructor(props: LineNodeWidgetProps) {
+	constructor(props: LoadNodeWidgetProps) {
 		super(props);
 		this.state = {};
 	}
@@ -24,28 +24,29 @@ export class LineNodeWidget extends React.Component<LineNodeWidgetProps, LineNod
 	render() {
 		return (
       <div>
-       {Line()}
+      
+      {Load()}
         
         <div
           style={{
             position: "absolute",
-            left: 50 / 2 - 22,
+            left: 50 / 2 - 20,
             top: -11,
           }}
         >
           <PortWidget name="top" node={this.props.node} />
         </div>
-        
         <div
           style={{
             position: "absolute",
             zIndex: 10,
-            left: 50 / 2 - 22,
-            top: 75,
+            left: 50 / 2 - 20,
+            top: 49,
           }}
         >
           <PortWidget name="bottom" node={this.props.node} />
         </div>
+      
       </div>
     );
 	}

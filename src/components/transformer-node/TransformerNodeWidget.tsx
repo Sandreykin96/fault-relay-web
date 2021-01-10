@@ -1,6 +1,7 @@
 import * as React from "react";
 import { TransformerNodeModel } from "./TransformerNodeModel";
 import { PortWidget } from "@projectstorm/react-diagrams";
+import { TransformerIcon } from "../icons/Icons";
 
 export interface TransformerNodeWidgetProps {
 	node: TransformerNodeModel;
@@ -23,17 +24,7 @@ export class TransformerNodeWidget extends React.Component<TransformerNodeWidget
 	render() {
 		return (
       <div>
-        <svg
-          width="50"
-          height="75"
-          viewBox="0 0 50 75"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <circle cx="25" cy="25" r="23.5" stroke="#55D162" stroke-width="3" />
-          <circle cx="25" cy="25" r="23.5" stroke="#55D162" stroke-width="3" />
-          <circle cx="25" cy="50" r="23.5" stroke="#55D162" stroke-width="3" />
-        </svg>
+       {TransformerIcon()}
 
         
         <div
