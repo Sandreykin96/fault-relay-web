@@ -1,22 +1,22 @@
 import * as React from "react";
-import { TransformerNodeModel } from "./TransformerNodeModel";
+import { ReactorNodeModel } from "./ReactorNodeModel";
 import { PortWidget } from "@projectstorm/react-diagrams";
-import { TransformerIcon } from "../icons/Icons";
+import { Reactor } from "../icons/Icons";
 
-export interface TransformerNodeWidgetProps {
-	node: TransformerNodeModel;
+export interface ReactorNodeWidgetProps {
+	node: ReactorNodeModel;
 	size?: number;
 }
 
-export interface TransformerNodeWidgetState {}
+export interface ReactorNodeWidgetState {}
 
-export class TransformerNodeWidget extends React.Component<TransformerNodeWidgetProps, TransformerNodeWidgetState> {
-	public static defaultProps: TransformerNodeWidgetProps = {
+export class ReactorNodeWidget extends React.Component<ReactorNodeWidgetProps, ReactorNodeWidgetState> {
+	public static defaultProps: ReactorNodeWidgetProps = {
 		size: 150,
-		node: new TransformerNodeModel
+		node: new ReactorNodeModel
 	};
 
-	constructor(props: TransformerNodeWidgetProps) {
+	constructor(props: ReactorNodeWidgetProps) {
 		super(props);
 		this.state = {};
 	}
@@ -24,14 +24,13 @@ export class TransformerNodeWidget extends React.Component<TransformerNodeWidget
 	render() {
 		return (
       <div>
-       {TransformerIcon()}
-
+       {Reactor()}
         
         <div
           style={{
             position: "absolute",
             left: 50 / 2 - 7,
-            top: -10,
+            top: -13,
           }}
         >
           <PortWidget name="top" node={this.props.node} />
@@ -42,7 +41,7 @@ export class TransformerNodeWidget extends React.Component<TransformerNodeWidget
             position: "absolute",
             zIndex: 10,
             left: 50 / 2 - 7,
-            top: 70,
+            top: 60,
           }}
         >
           <PortWidget name="bottom" node={this.props.node} />
