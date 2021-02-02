@@ -2,7 +2,7 @@ import * as _ from "lodash";
 import { LinkModel, DiagramEngine, PortModel, DefaultLinkModel } from "@projectstorm/react-diagrams";
 
 export class LoadPortModel extends PortModel {
-	position: string | "top" | "bottom";
+	position: string | "top";
 
 	constructor(pos: string = "top") {
 		super(pos, "load");

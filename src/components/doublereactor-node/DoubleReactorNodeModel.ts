@@ -5,6 +5,7 @@ export class DoubleReactorNodeModel extends NodeModel {
 	constructor() {
 		super("doublereactor");
 		this.addPort(new DoubleReactorPortModel("top"));
-		this.addPort(new DoubleReactorPortModel("bottom"));
+		this.addPort(new DoubleReactorPortModel("bottom-left"));
+		this.addPort(new DoubleReactorPortModel("bottom-right"));
 	}
 }

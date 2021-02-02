@@ -54,7 +54,7 @@ export class SwitchNodeWidget extends React.Component<SwitchNodeWidgetProps, Swi
             top: 15,
           }}
         >
-          <PortWidget name="bottom-left" node={this.props.node} />
+          <PortWidget name="left" node={this.props.node} />
         </div>
 
         <div
@@ -65,7 +65,7 @@ export class SwitchNodeWidget extends React.Component<SwitchNodeWidgetProps, Swi
             top: 15,
           }}
         >
-          <PortWidget name="bottom-right" node={this.props.node} />
+          <PortWidget name="right" node={this.props.node} />
         </div>
         
       </div>

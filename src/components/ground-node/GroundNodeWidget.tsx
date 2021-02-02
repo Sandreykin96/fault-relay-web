@@ -66,8 +66,6 @@ export class GroundNodeWidget extends React.Component<GroundNodeWidgetProps, Gro
         >
           <PortWidget name="top" node={this.props.node} />
         </div>
-        
-      
       </div>
     );
 	}

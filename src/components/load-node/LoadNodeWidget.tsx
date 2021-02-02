@@ -24,18 +24,7 @@ export class LoadNodeWidget extends React.Component<LoadNodeWidgetProps, LoadNod
 	render() {
 		return (
       <div>
-      
       {Load()}
-        
-        <div
-          style={{
-            position: "absolute",
-            left: 50 / 2 - 20,
-            top: -11,
-          }}
-        >
-          <PortWidget name="top" node={this.props.node} />
-        </div>
         <div
           style={{
             position: "absolute",
@@ -46,7 +35,6 @@ export class LoadNodeWidget extends React.Component<LoadNodeWidgetProps, LoadNod
         >
           <PortWidget name="bottom" node={this.props.node} />
         </div>
-      
       </div>
     );
 	}

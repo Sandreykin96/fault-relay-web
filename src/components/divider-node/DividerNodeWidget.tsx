@@ -34,7 +34,7 @@ export class DividerNodeWidget extends React.Component<DividerNodeWidgetProps, D
             top: 9,
           }}
         >
-          <PortWidget name="bottom-left" node={this.props.node} />
+          <PortWidget name="left" node={this.props.node} />
         </div>
 
         <div
@@ -45,7 +45,7 @@ export class DividerNodeWidget extends React.Component<DividerNodeWidgetProps, D
             top: 9,
           }}
         >
-          <PortWidget name="bottom-right" node={this.props.node} />
+          <PortWidget name="right" node={this.props.node} />
         </div>
       </div>
     );

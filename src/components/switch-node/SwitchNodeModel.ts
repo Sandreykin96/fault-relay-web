@@ -6,5 +6,7 @@ export class SwitchNodeModel extends NodeModel {
 		super("switch");
 		this.addPort(new SwitchPortModel("top"));
 		this.addPort(new SwitchPortModel("bottom"));
+		this.addPort(new SwitchPortModel("left"));
+		this.addPort(new SwitchPortModel("right"));
 	}
 }
