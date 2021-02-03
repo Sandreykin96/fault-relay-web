@@ -8,7 +8,7 @@ export class ReactorNodeFactory extends SRD.AbstractNodeFactory {
 		super("reactor");
 	}
 
-	generateReactWidget(diagramEngine: SRD.DiagramEngine, node: SRD.NodeModel): JSX.Element {
+	generateReactWidget(diagramEngine: SRD.DiagramEngine, node: ReactorNodeModel): JSX.Element {
 		return <ReactorNodeWidget node={node} />;
 	}
 

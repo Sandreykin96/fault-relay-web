@@ -8,7 +8,7 @@ export class LineNodeFactory extends SRD.AbstractNodeFactory {
 		super("line");
 	}
 
-	generateReactWidget(diagramEngine: SRD.DiagramEngine, node: SRD.NodeModel): JSX.Element {
+	generateReactWidget(diagramEngine: SRD.DiagramEngine, node: LineNodeModel): JSX.Element {
 		return <LineNodeWidget node={node} />;
 	}
 

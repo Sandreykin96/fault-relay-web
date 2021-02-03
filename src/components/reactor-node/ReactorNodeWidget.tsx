@@ -25,6 +25,14 @@ export class ReactorNodeWidget extends React.Component<ReactorNodeWidgetProps, R
 		return (
       <div>
        {Reactor()}
+       
+       <div style={{
+            position: "absolute",
+            left: 40,
+            top: -30,
+          }}>
+          {this.props.node.name}
+        </div>
         
         <div
           style={{
@@ -35,6 +43,16 @@ export class ReactorNodeWidget extends React.Component<ReactorNodeWidgetProps, R
         >
           <PortWidget name="top" node={this.props.node} />
         </div>
+{/* 
+        <div
+          style={{
+            position: "absolute",
+            left: 45,
+            top: -13,
+          }}
+        >
+          <PortWidget name="bottom" node={this.props.node} />
+        </div> */}
         
         <div
           style={{

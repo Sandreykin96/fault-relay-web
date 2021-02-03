@@ -26,6 +26,14 @@ export class DoubleReactorNodeWidget extends React.Component<DoubleReactorNodeWi
       <div>
         {DoubleReactor()}
         
+        <div style={{
+            position: "absolute",
+            left: 60,
+            top: -30,
+          }}>
+          {this.props.node.name}
+        </div>
+        
         <div
           style={{
             position: "absolute",

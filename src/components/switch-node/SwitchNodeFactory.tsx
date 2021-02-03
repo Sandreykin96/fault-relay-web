@@ -8,7 +8,7 @@ export class SwitchNodeFactory extends SRD.AbstractNodeFactory {
 		super("switch");
 	}
 
-	generateReactWidget(diagramEngine: SRD.DiagramEngine, node: SRD.NodeModel): JSX.Element {
+	generateReactWidget(diagramEngine: SRD.DiagramEngine, node: SwitchNodeModel): JSX.Element {
 		return <SwitchNodeWidget node={node} />;
 	}
 

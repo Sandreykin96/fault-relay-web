@@ -1,4 +1,4 @@
-import React, {useEffect } from "react";
+import React, {useEffect, useState} from "react";
 import * as _ from "lodash";
 import * as SRD from "@projectstorm/react-diagrams";
 import "./styles.css";
@@ -23,6 +23,15 @@ export interface BodyWidgetProps {
 }
 
 export const BodyWidget : React.FC<BodyWidgetProps> = ({app}) => {
+    const [generatorsCount, setGeneratorsCount] = useState(1);
+    const [transformersCount, setTransformersCount] = useState(1);
+    const [switchCount, setSwitchCount] = useState(1);
+    const [reactorsCount, setReactorsCount] = useState(1);
+    const [dividersCount, setDividersCount] = useState(1);
+    const [linesCount, setLinesCount] = useState(1);
+    const [groundCount, setGroundCount] = useState(1);
+    const [connectorsCount, setConnectorsCount] = useState(1);
+    const [loadsCount, setLoadsCount] = useState(1);
 
     const onItemDrop = (event: {
       dataTransfer: { getData: (arg0: string) => string };
@@ -35,38 +44,67 @@ export const BodyWidget : React.FC<BodyWidgetProps> = ({app}) => {
 
       var node: any = null;
 
-      if (data.type == TrayItemTypes.generator) {
-        node = new GeneratorNodeModel("Г" + nodesCount);
-      }
-      if (data.type == TrayItemTypes.transformer) {
-        node = new TransformerNodeModel("T" + nodesCount);
-      }
-      if (data.type == TrayItemTypes.transformer3) {
-        node = new TransformerNodeModel3();
-      }
-      if (data.type == TrayItemTypes.switch) {
-        node = new SwitchNodeModel();
-      }
-      if (data.type == TrayItemTypes.reactor) {
-        node = new ReactorNodeModel();
-      }
-      if (data.type == TrayItemTypes.doublereactor) {
-        node = new DoubleReactorNodeModel();
-      }
-      if (data.type == TrayItemTypes.divider) {
-        node = new DividerNodeModel();
-      }
-      if (data.type == TrayItemTypes.line) {
-        node = new LineNodeModel();
-      }
-      if (data.type == TrayItemTypes.ground) {
-        node = new GroundNodeModel();
-      }
-      if (data.type == TrayItemTypes.connector) {
-        node = new ConnectorNodeModel();
-      }
-      if (data.type == TrayItemTypes.load) {
-        node = new LoadNodeModel();
+      switch(data.type){
+          case TrayItemTypes.generator : {
+            setGeneratorsCount(prev => prev + 1);
+            node = new GeneratorNodeModel("Г" + generatorsCount);
+            break;
+          }
+          case TrayItemTypes.transformer : {
+            setTransformersCount(prev => prev + 1);
+            node = new TransformerNodeModel("T" + transformersCount);
+            break;
+          }
+          case TrayItemTypes.transformer3 : {
+            setTransformersCount(prev => prev + 1);
+            node = new TransformerNodeModel3("T" + transformersCount);
+            break;
+          }
+          case TrayItemTypes.switch : {
+            setSwitchCount(prev => prev + 1);
+            node = new SwitchNodeModel("В" + switchCount);
+            break;
+          }
+          case TrayItemTypes.reactor : {
+            setReactorsCount(prev => prev + 1);
+            node = new ReactorNodeModel("Р" + reactorsCount);
+            break;
+          }
+          case TrayItemTypes.doublereactor : {
+            setReactorsCount(prev => prev + 1);
+            node = new DoubleReactorNodeModel("Р" + reactorsCount);
+            break;
+          }
+          case TrayItemTypes.divider : {
+            setDividersCount(prev => prev + 1);
+            node = new DividerNodeModel("Рз" + dividersCount);
+            break;
+          }
+          case TrayItemTypes.line : {
+            setLinesCount(prev => prev + 1);
+            node = new LineNodeModel("Л" + linesCount);
+            break;
+          }
+        //   case TrayItemTypes.line : {
+        //     setLinesCount(prev => prev + 1);
+        //     node = new LineNodeModel("Л" + linesCount);
+        //     break;
+        //   }
+          case TrayItemTypes.ground : {
+            setGroundCount(prev => prev + 1);
+            node = new GroundNodeModel();
+            break;
+          }
+          case TrayItemTypes.connector : {
+            setConnectorsCount(prev => prev + 1);
+             node = new ConnectorNodeModel();
+             break;
+           }
+          case TrayItemTypes.load : {
+            setLoadsCount(prev => prev + 1);
+            node = new LoadNodeModel("Н" + loadsCount);
+            break;
+          }
       }
 
       var point = app.getDiagramEngine().getRelativeMousePoint(event);

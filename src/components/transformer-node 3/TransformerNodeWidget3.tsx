@@ -26,6 +26,13 @@ export class TransformerNodeWidget3 extends React.Component<TransformerNodeWidge
       <div>
         {ThreeTransformerIcon()}
 
+        <div style={{
+            position: "absolute",
+            left: 60,
+            top: -30,
+          }}>
+          {this.props.node.name}
+        </div>
         
         <div
           style={{

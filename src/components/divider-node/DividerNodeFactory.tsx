@@ -8,7 +8,7 @@ export class DividerNodeFactory extends SRD.AbstractNodeFactory {
 		super("divider");
 	}
 
-	generateReactWidget(diagramEngine: SRD.DiagramEngine, node: SRD.NodeModel): JSX.Element {
+	generateReactWidget(diagramEngine: SRD.DiagramEngine, node: DividerNodeModel): JSX.Element {
 		return <DividerNodeWidget node={node} />;
 	}
 

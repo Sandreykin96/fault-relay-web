@@ -8,7 +8,7 @@ export class LoadNodeFactory extends SRD.AbstractNodeFactory {
 		super("load");
 	}
 
-	generateReactWidget(diagramEngine: SRD.DiagramEngine, node: SRD.NodeModel): JSX.Element {
+	generateReactWidget(diagramEngine: SRD.DiagramEngine, node: LoadNodeModel): JSX.Element {
 		return <LoadNodeWidget node={node} />;
 	}
 

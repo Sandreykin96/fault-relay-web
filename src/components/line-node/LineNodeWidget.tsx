@@ -25,6 +25,14 @@ export class LineNodeWidget extends React.Component<LineNodeWidgetProps, LineNod
 		return (
       <div>
        {Line()}
+       
+       <div style={{
+            position: "absolute",
+            left: 30,
+            top: -30,
+          }}>
+          {this.props.node.name}
+        </div>
         
         <div
           style={{

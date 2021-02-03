@@ -25,6 +25,13 @@ export class LoadNodeWidget extends React.Component<LoadNodeWidgetProps, LoadNod
 		return (
       <div>
       {Load()}
+      <div style={{
+            position: "absolute",
+            left: 40,
+            top: -30,
+          }}>
+          {this.props.node.name}
+        </div>
         <div
           style={{
             position: "absolute",

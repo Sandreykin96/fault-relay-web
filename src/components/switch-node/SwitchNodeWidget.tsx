@@ -25,6 +25,14 @@ export class SwitchNodeWidget extends React.Component<SwitchNodeWidgetProps, Swi
 		return (
       <div>
        {Switch()}
+
+       <div style={{
+            position: "absolute",
+            left: 40,
+            top: -30,
+          }}>
+          {this.props.node.name}
+        </div>
         
         <div
           style={{

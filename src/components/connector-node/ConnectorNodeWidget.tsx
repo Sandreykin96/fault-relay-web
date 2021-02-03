@@ -24,29 +24,56 @@ export class ConnectorNodeWidget extends React.Component<ConnectorNodeWidgetProp
 	render() {
 		return (
       <div>
-      {Connector()}
+      <svg
+      width="300"
+      height="9"
+      viewBox="0 0 300 9"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <line
+        x1="0.0"
+        y1="5.61129"
+        x2="300"
+        y2="3.517"
+        stroke="#2087E7"
+        stroke-width="6"
+      />
+    </svg>
         
       <div
           style={{
             position: "absolute",
             zIndex: 10,
-            left: 50 / 2 -36,
+            left: 75,
             top: 6,
           }}
         >
-          <PortWidget name="bottom-left" node={this.props.node} />
+          <PortWidget name="left" node={this.props.node} />
         </div>
 
         <div
           style={{
             position: "absolute",
             zIndex: 10,
-            left: 50 / 2 +93,
+            left: 150,
             top: 6,
           }}
         >
-          <PortWidget name="bottom-right" node={this.props.node} />
+          <PortWidget name="middle" node={this.props.node} />
         </div>
+
+        <div
+          style={{
+            position: "absolute",
+            zIndex: 10,
+            left: 225,
+            top: 6,
+          }}
+        >
+          <PortWidget name="right" node={this.props.node} />
+        </div>
+
       </div>
     );
 	}

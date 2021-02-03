@@ -25,6 +25,14 @@ export class DividerNodeWidget extends React.Component<DividerNodeWidgetProps, D
 		return (
       <div>
       {Divider()}
+      
+        <div style={{
+            position: "absolute",
+            left: 60,
+            top: -20,
+          }}>
+          {this.props.node.name}
+        </div>
 
         <div
           style={{
