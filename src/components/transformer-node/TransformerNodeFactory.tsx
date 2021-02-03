@@ -8,7 +8,7 @@ export class TransformerNodeFactory extends SRD.AbstractNodeFactory {
 		super("transformer");
 	}
 
-	generateReactWidget(diagramEngine: SRD.DiagramEngine, node: SRD.NodeModel): JSX.Element {
+	generateReactWidget(diagramEngine: SRD.DiagramEngine, node: TransformerNodeModel): JSX.Element {
 		return <TransformerNodeWidget node={node} />;
 	}
 

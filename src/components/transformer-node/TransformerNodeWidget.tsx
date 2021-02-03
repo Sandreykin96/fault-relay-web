@@ -25,7 +25,13 @@ export class TransformerNodeWidget extends React.Component<TransformerNodeWidget
 		return (
       <div>
        {TransformerIcon()}
-
+       <div style={{
+            position: "absolute",
+            left: 45,
+            top: -30,
+          }}>
+          {this.props.node.name}
+        </div>
         
         <div
           style={{
