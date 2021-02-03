@@ -43,17 +43,7 @@ export class ReactorNodeWidget extends React.Component<ReactorNodeWidgetProps, R
         >
           <PortWidget name="top" node={this.props.node} />
         </div>
-{/* 
-        <div
-          style={{
-            position: "absolute",
-            left: 45,
-            top: -13,
-          }}
-        >
-          <PortWidget name="bottom" node={this.props.node} />
-        </div> */}
-        
+     
         <div
           style={{
             position: "absolute",
