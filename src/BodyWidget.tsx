@@ -117,19 +117,20 @@ export const BodyWidget : React.FC<BodyWidgetProps> = ({app}) => {
 
     return (
       <div className="Content">
-        <div style={{ marginLeft: 10, marginRight: 10, height: 680, overflowY: "scroll",}} >
+        <div style={{ marginLeft: 10, marginRight: 4, height: window.innerHeight - 70 + 'px', overflowY: "scroll",}} >
           <TrayWidget>
             <TrayItems />
           </TrayWidget>
         </div>
         
-        <div className="Layer" onDrop={onItemDrop} onDragOver={onItemDrugOver}>
+        <div style = {{width : window.innerWidth -500 + 'px'}} onDrop={onItemDrop} onDragOver={onItemDrugOver}>
           <SRD.DiagramWidget
             className="srd-demo-canvas"
             smartRouting={true}
             diagramEngine={app.getDiagramEngine()}
           />
         </div>
+        
       </div>
     );
 }

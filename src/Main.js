@@ -20,7 +20,7 @@ import MailIcon from "@material-ui/icons/Mail";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 
-const drawerWidth = 220;
+const drawerWidth = 240;
 
 const styles = theme => ({
   root: {
@@ -188,8 +188,8 @@ class MiniDrawer extends React.Component {
                 open={open}
                 onClose={this.handleClose}
               >
-                <MenuItem onClick={this.handleClose}>Profile</MenuItem>
-                <MenuItem onClick={this.handleClose}>My account</MenuItem>
+                <MenuItem onClick={this.handleClose}>Профиль</MenuItem>
+                <MenuItem onClick={this.handleClose}>Выйти</MenuItem>
               </Menu>
             </div>
           </Toolbar>
@@ -210,7 +210,7 @@ class MiniDrawer extends React.Component {
         >
           <div className={classes.toolbar} />
           <List>
-            {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
+            {["Сохранить", "Мои схемы", "Табличные данные", "Методики расчета"].map((text, index) => (
               <ListItem button key={text}>
                 <ListItemIcon>
                   {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
@@ -221,7 +221,18 @@ class MiniDrawer extends React.Component {
           </List>
           <Divider />
           <List>
-            {["All mail", "Trash", "Spam"].map((text, index) => (
+            {["Расчет схемы", "Расчет РЗА"].map((text, index) => (
+              <ListItem button key={text}>
+                <ListItemIcon>
+                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            ))}
+          </List>
+          <Divider />
+          <List>
+            {["Помощь"].map((text, index) => (
               <ListItem button key={text}>
                 <ListItemIcon>
                   {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}

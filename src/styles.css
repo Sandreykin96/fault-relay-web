@@ -100,9 +100,7 @@
 .srd-demo-canvas {
   position: relative;
   flex-grow: 1;
-  margin-right: 40%;
   height: 100%;
-  width: 1000px;
   background-color: #131314 !important;
   background-image: linear-gradient(
       0deg,
@@ -130,3 +128,11 @@
     );
   background-size: 50px 50px;
 }
+
+.srd-diagram {
+    position: relative;
+    flex-grow: 1;
+    display: flex;
+    cursor: move;
+    overflow: hidden;
+  }
