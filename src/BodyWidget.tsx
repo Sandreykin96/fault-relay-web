@@ -85,11 +85,6 @@ export const BodyWidget : React.FC<BodyWidgetProps> = ({app}) => {
             node = new LineNodeModel("Л" + linesCount);
             break;
           }
-        //   case TrayItemTypes.line : {
-        //     setLinesCount(prev => prev + 1);
-        //     node = new LineNodeModel("Л" + linesCount);
-        //     break;
-        //   }
           case TrayItemTypes.ground : {
             setGroundCount(prev => prev + 1);
             node = new GroundNodeModel();

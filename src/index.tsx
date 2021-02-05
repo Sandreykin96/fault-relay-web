@@ -3,10 +3,29 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter as Router } from "react-router-dom";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Main from './Main';
+import { ThemeProvider } from '@material-ui/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
+
+const theme = createMuiTheme({
+  palette: {
+    type: 'dark',
+    primary: {
+      main: 'rgb(33, 33, 34)',
+    },
+  }
+});
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Router>
+    <ThemeProvider theme={theme}>
+      <Main />
+    </ThemeProvider>
+      <App />
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );
