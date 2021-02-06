@@ -22,7 +22,7 @@ import { createMuiTheme } from "@material-ui/core/styles";
 import { ContactsOutlined } from "@material-ui/icons";
 
 //тут импортируешь через запятую что добавила
-import { GeneratorData, TransformerData } from "./PowerSystemForms";
+import { GeneratorData, TransformerData, Transformer3Data, AutoTransformerData, ReactorData, DoubleReactorData, ConnectorData, LineData, GroundData, LoadData, SwitchData } from "./PowerSystemForms";
 
 
 const theme = createMuiTheme({
@@ -30,7 +30,7 @@ const theme = createMuiTheme({
     type: "dark",
     primary: {
       //тут цвет записи когда задаем параметры, исправь на более подходящий =) 
-      main: '#2bc444',
+      main: '#D58B43',
     },
   },
   
@@ -84,46 +84,55 @@ export const BodyWidget : React.FC<BodyWidgetProps> = ({app}) => {
             setTransformersCount(prev => prev + 1);
             node = new TransformerNodeModel3("T" + transformersCount);
             //А дальше сама добавляй=) 
+            setSelectedItemId('Т' + transformersCount);
             break;
           }
           case TrayItemTypes.switch : {
             setSwitchCount(prev => prev + 1);
             node = new SwitchNodeModel("В" + switchCount);
+            setSelectedItemId('В' + switchCount);
             break;
           }
           case TrayItemTypes.reactor : {
             setReactorsCount(prev => prev + 1);
             node = new ReactorNodeModel("Р" + reactorsCount);
+            setSelectedItemId('Р' + reactorsCount);
             break;
           }
           case TrayItemTypes.doublereactor : {
             setReactorsCount(prev => prev + 1);
             node = new DoubleReactorNodeModel("Р" + reactorsCount);
+            setSelectedItemId('Р' + reactorsCount);
             break;
           }
           case TrayItemTypes.divider : {
             setDividersCount(prev => prev + 1);
             node = new DividerNodeModel("Рз" + dividersCount);
+            setSelectedItemId('Рз' + dividersCount);
             break;
           }
           case TrayItemTypes.line : {
             setLinesCount(prev => prev + 1);
             node = new LineNodeModel("Л" + linesCount);
+            setSelectedItemId('Л' + linesCount);
             break;
           }
           case TrayItemTypes.ground : {
             setGroundCount(prev => prev + 1);
             node = new GroundNodeModel();
+            setSelectedItemId('З' + groundCount);
             break;
           }
           case TrayItemTypes.connector : {
             setConnectorsCount(prev => prev + 1);
              node = new ConnectorNodeModel();
+             setSelectedItemId('К' + connectorsCount);
              break;
            }
           case TrayItemTypes.load : {
             setLoadsCount(prev => prev + 1);
             node = new LoadNodeModel("Н" + loadsCount);
+            setSelectedItemId('Н' + loadsCount);
             break;
           }
       }
@@ -173,7 +182,13 @@ export const BodyWidget : React.FC<BodyWidgetProps> = ({app}) => {
           {/* Тут сделай так чтобы когда вытаскиваешь элемент определенного типа появлялись данные для этого типа.  */}
           {selectedItemId.startsWith("Г") ? <GeneratorData /> : (null)}
           {selectedItemId.startsWith("Т") ? <TransformerData /> : (null)}
-
+          {selectedItemId.startsWith("Т") ? <Transformer3Data /> : (null)}
+          {selectedItemId.startsWith("В") ? <SwitchData /> : (null)}
+          {selectedItemId.startsWith("Р") ? <ReactorData /> : (null)}
+          {selectedItemId.startsWith("Р") ? <DoubleReactorData /> : (null)}
+          {selectedItemId.startsWith("Л") ? <LineData /> : (null)}
+          {selectedItemId.startsWith("З") ? <GroundData /> : (null)}
+          {selectedItemId.startsWith("Н") ? <LoadData /> : (null)}
         </ThemeProvider>
       </div>
     );
