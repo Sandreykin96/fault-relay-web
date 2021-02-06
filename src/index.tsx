@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router } from "react-router-dom";
 import Main from './Main';
+import { Input } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
 
@@ -20,13 +21,13 @@ const theme = createMuiTheme({
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-    <ThemeProvider theme={theme}>
-      <Main />
-    </ThemeProvider>
+      <ThemeProvider theme={theme}>
+        <Main />
+      </ThemeProvider>
       <App />
     </Router>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 reportWebVitals();
