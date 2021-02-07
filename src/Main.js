@@ -15,12 +15,17 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
 //Импортируешь подходящую иконку. Ссылку где икноки я тебе скинул
 import SaveAltIcon from '@material-ui/icons/SaveAlt';
-import MailIcon from "@material-ui/icons/Mail";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
+import ListIcon from '@material-ui/icons/List';
+import TableChartIcon from '@material-ui/icons/TableChart';
+import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
+import PlayCircleFilledWhiteIcon from '@material-ui/icons/PlayCircleFilledWhite';
+import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
+import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
+import SettingsIcon from '@material-ui/icons/Settings';
 
 const drawerWidth = 240;
 
@@ -84,7 +89,7 @@ const styles = theme => ({
     }
   },
   toolbar: {
-    color : "secondary.main",
+    color: "secondary.main",
     display: "flex",
     alignItems: "center",
     marginTop: theme.spacing.unit,
@@ -164,6 +169,12 @@ class MiniDrawer extends React.Component {
             </Typography>
 
             <div>
+              <IconButton color="inherit">
+                <SettingsIcon />
+              </IconButton>
+            </div>
+            
+            <div>
               <IconButton
                 aria-owns={open ? "menu-appbar" : undefined}
                 aria-haspopup="true"
@@ -215,38 +226,52 @@ class MiniDrawer extends React.Component {
               </ListItemIcon>
               <ListItemText primary={"Сохранить"} />
             </ListItem>
-            {["Мои схемы", "Табличные данные", "Методики расчета"].map(
-              (text, index) => (
-                <ListItem button key={text}>
-                  <ListItemIcon>
-                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                  </ListItemIcon>
-                  <ListItemText primary={text} />
-                </ListItem>
-              )
-            )}
-          </List>
-          <Divider />
-          <List>
-            {["Расчет схемы", "Расчет РЗА"].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
-          </List>
-          <Divider />
-          <List>
-            {["Помощь"].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
+
+            <ListItem button key={"List"}>
+              <ListItemIcon>
+                <ListIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Мои схемы"} />
+            </ListItem>
+
+            <ListItem button key={"TableData"}>
+              <ListItemIcon>
+                <TableChartIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Табличные данные"} />
+            </ListItem>
+
+            <ListItem button key={"СalculationMethods"}>
+              <ListItemIcon>
+                <LibraryBooksIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Методики расчета"} />
+            </ListItem>
+
+            <Divider />
+
+            <ListItem button key={"CalculationScheme"}>
+              <ListItemIcon>
+                <PlayCircleFilledWhiteIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Расчет схемы"} />
+            </ListItem>
+
+            <ListItem button key={"CalculationRSA"}>
+              <ListItemIcon>
+                <PlayCircleOutlineIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Расчет РЗА"} />
+            </ListItem>
+
+            <Divider />
+
+            <ListItem button key={"Help"}>
+              <ListItemIcon>
+                <HelpOutlineIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Помощь"} />
+            </ListItem>
           </List>
         </Drawer>
       </div>
