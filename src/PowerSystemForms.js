@@ -9,6 +9,7 @@ export const GeneratorData = () => {
         <div style = {{marginTop : '10px'}}>Задайте параметры генератора</div>
         <TextField id="Name" label="Название" />
         <Box />
+        
         <TextField id="FullPower" label="Полная мощность" />
         <Box />
         <TextField id="Voltage" label="Напряжение" />
