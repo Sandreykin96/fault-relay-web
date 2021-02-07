@@ -16,6 +16,8 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
+//Импортируешь подходящую иконку. Ссылку где икноки я тебе скинул
+import SaveAltIcon from '@material-ui/icons/SaveAlt';
 import MailIcon from "@material-ui/icons/Mail";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
@@ -131,7 +133,7 @@ class MiniDrawer extends React.Component {
           position="fixed"
           className={classes.appBar}
           fooJon={classNames(classes.appBar, {
-            [classes.appBarShift]: this.state.open
+            [classes.appBarShift]: this.state.open,
           })}
         >
           <Toolbar disableGutters={true}>
@@ -145,7 +147,7 @@ class MiniDrawer extends React.Component {
                 classes={{
                   root: this.state.open
                     ? classes.menuButtonIconOpen
-                    : classes.menuButtonIconClosed
+                    : classes.menuButtonIconClosed,
                 }}
               />
             </IconButton>
@@ -157,14 +159,10 @@ class MiniDrawer extends React.Component {
             >
               FaultRelay
             </Typography>
-            <Typography
-              variant="h8"
-              color="inherit"
-              noWrap
-            >
+            <Typography variant="h8" color="inherit" noWrap>
               Расчеты энергосистем и РЗА
             </Typography>
-            
+
             <div>
               <IconButton
                 aria-owns={open ? "menu-appbar" : undefined}
@@ -179,11 +177,11 @@ class MiniDrawer extends React.Component {
                 anchorEl={anchorEl}
                 anchorOrigin={{
                   vertical: "top",
-                  horizontal: "right"
+                  horizontal: "right",
                 }}
                 transformOrigin={{
                   vertical: "top",
-                  horizontal: "right"
+                  horizontal: "right",
                 }}
                 open={open}
                 onClose={this.handleClose}
@@ -198,26 +196,35 @@ class MiniDrawer extends React.Component {
           variant="permanent"
           className={classNames(classes.drawer, {
             [classes.drawerOpen]: this.state.open,
-            [classes.drawerClose]: !this.state.open
+            [classes.drawerClose]: !this.state.open,
           })}
           classes={{
             paper: classNames({
               [classes.drawerOpen]: this.state.open,
-              [classes.drawerClose]: !this.state.open
-            })
+              [classes.drawerClose]: !this.state.open,
+            }),
           }}
           open={this.state.open}
         >
           <div className={classes.toolbar} />
           <List>
-            {["Сохранить", "Мои схемы", "Табличные данные", "Методики расчета"].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
+            {/* Пример */}
+            <ListItem button key={"Save"}>
+              <ListItemIcon>
+                <SaveAltIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Сохранить"} />
+            </ListItem>
+            {["Мои схемы", "Табличные данные", "Методики расчета"].map(
+              (text, index) => (
+                <ListItem button key={text}>
+                  <ListItemIcon>
+                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  </ListItemIcon>
+                  <ListItemText primary={text} />
+                </ListItem>
+              )
+            )}
           </List>
           <Divider />
           <List>
